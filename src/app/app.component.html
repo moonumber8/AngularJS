@@ -1,4 +1,4 @@
-<form #myform="ngForm" (ngSubmit)="onSubmit_data(myform.value)" class="form form-register">
+<form #myform="ngForm" class="form form-register">
 <div class="container">
     <div class="logo">Create a new account!</div>
     <div class="register-item">  
@@ -13,7 +13,7 @@
         </div>
 
         <div class="form-field">
-          <!--<input type="submit" value="Register">-->
+          <input type="button" value="Register"  (click)="onSubmit_data(myform.value)">
         </div>
 
     </div>
