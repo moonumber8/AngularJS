@@ -22,6 +22,8 @@
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "mongoose": "^5.8.2",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.0.2",
     "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

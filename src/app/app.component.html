@@ -1,7 +1,7 @@
+<form #myform="ngForm" (ngSubmit)="onSubmit_data(myform.value)" class="form form-register">
 <div class="container">
     <div class="logo">Create a new account!</div>
-    <div class="register-item">
-      <form #myform="ngForm" (ngSubmit)="onSubmit_data(myform.value)" class="form form-register">
+    <div class="register-item">  
         <div class="form-field">
           <label class="user" for="register-email"><span class="hidden">Email</span></label>
           <input name="email" id="register-email" type="email" class="form-input" placeholder="Email" ngModel required>
@@ -9,20 +9,41 @@
 
         <div class="form-field">
           <label class="lock" for="register-password"><span class="hidden">Password</span></label>
-          <input name="password" id="register-password" type="password" class="form-input" placeholder="Password" ngModel required>
+          <input name="phone_number" id="register-password" type="text" class="form-input" placeholder="Password" ngModel required>
         </div>
 
         <div class="form-field">
           <input type="submit" value="Register">
         </div>
-      </form>
+
     </div>
 </div>
 <br>
 <hr>
 <br>
-<div>
-  <ol>
-    <li *ngFor="let item of mDataArray">{{item.email}} : {{item.password}}</li>
-  </ol>
+<div class="form-group mx-sm-3 mb-2">
+  <label for="inputPassword2" class="sr-only" >Password</label>
+  <input ngModel name="txt_search" type="text" class="form-control" id="inputPassword2" placeholder="Password" style="width: 20%;" (ngModelChange)="func_search($event)" > 
+  <br>
+  <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
 </div>
+
+<div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" style="width: 10px;">#</th>
+        <th scope="col" style="width: 50%;">email</th>
+        <th scope="col" style="width: 50%;">phone number</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mDataArray;  let i = index;">
+      <td>{{i+1}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.phone_number}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
