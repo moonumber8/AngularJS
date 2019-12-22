@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   onSubmit_data(data: { email: any; phone_number: any; }){
  
     this.http.post<any>('http://localhost:3000/api', data).subscribe(result=>{
-      console.log(JSON.stringify(result))
+  
       this.getData();
     });
     
@@ -27,10 +27,8 @@ export class AppComponent implements OnInit {
 
 
   func_search(val){
-    console.log(val.target.value);
     if(val.key === "Enter"){
       this.http.get<any>('http://localhost:3000/search/'+ val.target.value).subscribe(result=>{
-        //console.log(JSON.stringify(result))
         this.mDataArray = result.data
       });
     }
