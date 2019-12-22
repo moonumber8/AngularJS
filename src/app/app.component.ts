@@ -24,11 +24,16 @@ export class AppComponent implements OnInit {
     });
     
   }
-  func_search(val:{txt_search:any}){
-    this.http.get<any>('http://localhost:3000/search/:phone').subscribe(result=>{
-      console.log(JSON.stringify(result))
-      this.getSearch();
-    });
+
+
+  func_search(val){
+    console.log(val.target.value);
+    if(val.key === "Enter"){
+      this.http.get<any>('http://localhost:3000/search/'+ val.target.value).subscribe(result=>{
+        //console.log(JSON.stringify(result))
+        this.mDataArray = result.data
+      });
+    }
   }
 
   getData(){
@@ -37,11 +42,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getSearch(){
-    this.http.get<any>('http://localhost:3000/search/:phone_number').subscribe(result=>{
-      this.mDataArray = result.data
-    });
-  }
 
   ngOnInit(): void {
     
