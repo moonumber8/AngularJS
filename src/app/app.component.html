@@ -1,21 +1,16 @@
 <form #myform="ngForm" class="form form-register">
 <div class="container">
     <div class="logo">Create a new account!</div>
-    <div class="register-item">  
-        <div class="form-field">
-          <label class="user" for="register-email"><span class="hidden">Email</span></label>
-          <input name="email" id="register-email" type="email" class="form-input" placeholder="Email" ngModel required>
+    <div class="form-group form-group mx-sm-3 mb-2">  
+        <div class="form-field form-group mx-sm-3 mb-2">         
+          <input name="email" id="register-email" type="email" class="form-control mb-2 mr-sm-2 " placeholder="Email" ngModel required>
         </div>
-
-        <div class="form-field">
-          <label class="lock" for="register-password"><span class="hidden">Password</span></label>
-          <input name="phone_number" id="register-password" type="text" class="form-input" placeholder="Password" ngModel required>
+        <div class="form-field form-group mx-sm-3 mb-2">  
+          <input name="phone_number" id="phone_number" type="text" class="form-control mb-2 mr-sm-2" placeholder="Password" ngModel required>
+        </div>    
+        <div class="form-field form-group mx-sm-3 mb-2">
+          <input class="btn btn-primary" type="button" value="Register"  (click)="onSubmit_data(myform.value)">
         </div>
-
-        <div class="form-field">
-          <input type="button" value="Register"  (click)="onSubmit_data(myform.value)">
-        </div>
-
     </div>
 </div>
 <br>
@@ -23,7 +18,7 @@
 <br>
 <div class="form-group mx-sm-3 mb-2">
   <label for="inputPassword2" class="sr-only" >Password</label>
-  <input ngModel name="txt_search" type="text" class="form-control" id="aaaabbbb" placeholder="Password" style="width: 20%;" (keyup)="func_search($event)" > 
+  <input ngModel name="txt_search" type="text" class="form-control mb-2 mr-sm-2" id="aaaabbbb" placeholder="Password" (keyup)="func_search($event)" > 
   <br>
   <!--<button type="submit" class="btn btn-primary mb-2">Confirm identity</button>-->
 </div>
@@ -35,6 +30,7 @@
         <th scope="col" style="width: 10px;">#</th>
         <th scope="col" style="width: 50%;">email</th>
         <th scope="col" style="width: 50%;">phone number</th>
+        <th scope="col" style="width: 50%;">จัดการ</th>
       </tr>
     </thead>
     <tbody>
@@ -42,6 +38,7 @@
       <td>{{i+1}}</td>
       <td>{{item.email}}</td>
       <td>{{item.phone_number}}</td>
+      <td><button type="button" class="btn btn-warning" (click)="edit_data(item.id)">Warning</button></td>
     </tr>
     </tbody>
   </table>

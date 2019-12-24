@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +12,7 @@ export class AppComponent implements OnInit {
   count = 0;
   mDataArray:any[] = [];
   array_list_name:any;
+  searchInput: any;
   constructor(private http:HttpClient){
   }
 
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   func_search(val){
     if(val.key === "Enter"){
       this.http.get<any>('http://localhost:3000/search/'+ val.target.value).subscribe(result=>{
-        this.mDataArray = result.data
+        this.mDataArray = result.data;   
       });
     }
   }
@@ -40,6 +40,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  edit_data(a){
+    console.log(typeof(a));
+  }
+  
 
   ngOnInit(): void {
     
