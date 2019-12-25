@@ -30,6 +30,7 @@
         <th scope="col" style="width: 10px;">#</th>
         <th scope="col" style="width: 50%;">email</th>
         <th scope="col" style="width: 50%;">phone number</th>
+        <th scope="col" style="width: 50%;">id</th>
         <th scope="col" style="width: 50%;">จัดการ</th>
       </tr>
     </thead>
@@ -38,9 +39,44 @@
       <td>{{i+1}}</td>
       <td>{{item.email}}</td>
       <td>{{item.phone_number}}</td>
-      <td><button type="button" class="btn btn-warning" (click)="edit_data(item.id)">Warning</button></td>
+      <td>{{item._id}}</td>
+      <td> <button type="button" class="btn btn-primary btn-warning" (click)="onClick(template)">Open modal</button></td>
+     
     </tr>
     </tbody>
   </table>
 </div>
 </form>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myformEdit="ngForm" class="form form-register">
+    <div class="container">    
+      <div class="logo">Create a new account!</div>
+      <div class="form-group form-group mx-sm-3 mb-2"> 
+        
+          <div class="form-field form-group mx-sm-3 mb-2">         
+            <input name="email" id="register-email" type="email" class="form-control mb-2 mr-sm-2 " placeholder="Email" ngModel required>
+          </div>
+          <div class="form-field form-group mx-sm-3 mb-2">  
+            <input name="phone_number" id="phone_number" type="text" class="form-control mb-2 mr-sm-2" placeholder="Password" ngModel required>
+          </div>       
+      </div>
+    </div>
+    <div style="padding: 10px;">
+      <button type="button" class="btn btn-success" (click)="edit_data(myformEdit.value)">บันทึก</button>
+      <button style="margin-left: 3px;" type="button" class="btn btn-danger" (click)="disabled = !disabled">ยกเลิก</button>
+    </div>
+  </form> 
+  <br>
+</ng-template>
+
+
+
+
