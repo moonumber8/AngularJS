@@ -14,8 +14,13 @@ export class AppComponent implements OnInit {
   title = 'my-app';
   count = 0;
   mDataArray:any[] = [];
-  array_list_name:any;
+  mDetailArray:any[] = [];
+  item_id: any;
+  s_email: any;
+  s_phone_nunber: any;
   searchInput: any;
+  edit_email: any;
+  data: any[];
   constructor(
     private http:HttpClient,
     private modalService : BsModalService
@@ -24,9 +29,6 @@ export class AppComponent implements OnInit {
  
   @ViewChild('template', {static: true}) modal:TemplateRef<any>;; 
 
-  onClick(){
-    this.modalRef = this.modalService.show(this.modal);
-  }
 
   onSubmit_data(data: { email: any; phone_number: any; }){
  
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  func_search(val){
+  func_search(val: { key: string; target: { value: string; }; }){
     if(val.key === "Enter"){
       this.http.get<any>('http://localhost:3000/search/'+ val.target.value).subscribe(result=>{
         this.mDataArray = result.data;   
@@ -48,16 +50,38 @@ export class AppComponent implements OnInit {
 
   getData(){
     this.http.get<any>('http://localhost:3000/list_data').subscribe(result=>{
-      console.log(result);
       this.mDataArray = result.data
     });
   }
 
-  edit_data(edit_data){
-    this.http.post<any>('http://localhost:3000/api', edit_data).subscribe(result=>{
-      this.mDataArray = result.data
+  edit_data(edit_data: { email: any; phone_number: any; },item_id: any){
+    let obj_data = { 
+      email:edit_data.email, 
+      phone_number:edit_data.phone_number,
+      item_id:item_id
+    }; 
+    this.http.put<any>('http://localhost:3000/edit_data', obj_data).subscribe(result=>{
+      this.getData();
     });
   } 
+
+  del_data(item_id: any){
+
+    this.http.delete('http://localhost:3000/delete/'+ item_id).subscribe(result=>{
+      this.getData();
+    });
+  }
+
+  onClick(data: any,item_id: any){
+     this.http.get<any>('http://localhost:3000/show_detail/'+ item_id).subscribe(result=>{
+        this.mDetailArray = result.data;
+    });
+    this.data = this.mDataArray;
+    this.item_id = item_id;
+    this.modalRef = this.modalService.show(this.modal);
+   
+  }
+
 
   ngOnInit(): void {
     
