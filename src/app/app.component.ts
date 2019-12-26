@@ -76,7 +76,6 @@ export class AppComponent implements OnInit {
      this.http.get<any>('http://localhost:3000/show_detail/'+ item_id).subscribe(result=>{
         this.mDetailArray = result.data;
     });
-    this.data = this.mDataArray;
     this.item_id = item_id;
     this.modalRef = this.modalService.show(this.modal);
    
